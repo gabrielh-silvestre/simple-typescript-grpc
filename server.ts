@@ -4,14 +4,14 @@ import {
   ServerCredentials,
   ServerUnaryCall,
 } from "@grpc/grpc-js";
-import { PostServiceService } from "./@types/post_grpc_pb";
+import { PostServiceService } from "./protoServices/post_grpc_pb";
 
 import {
   Empty,
   Post,
   PostAddCommentRequest,
   PostCreateRequest,
-} from "./@types/post_pb";
+} from "./protoServices/post_pb";
 
 const FAKE_DB = [
   {

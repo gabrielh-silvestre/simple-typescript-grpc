@@ -9,6 +9,6 @@ grpc_tools_node_protoc \
 
 protoc \
     --plugin=protoc-gen-ts=./node_modules/.bin/protoc-gen-ts \
-    --ts_out=./@types \
+    --ts_out=./protoServices \
     -I ./proto \
     ./proto/*.proto
