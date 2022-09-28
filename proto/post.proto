@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+service PostService {
+  rpc CreatePost (PostCreateRequest) returns (Post);
+  rpc AddComment (PostAddCommentRequest) returns (Post);
+  rpc ListPosts (Empty) returns (PostList);
+}
+
+message Empty {}
+
+message PostCreateRequest {
+  string title = 1;
+}
+
+message PostAddCommentRequest {
+  string post_id = 1;
+  string comment = 2;
+}
+
+message Post {
+  int64 id = 1;
+  string title = 2;
+  string comment = 3;
+}
+
+message PostList {
+  repeated Post posts = 1;
+}
