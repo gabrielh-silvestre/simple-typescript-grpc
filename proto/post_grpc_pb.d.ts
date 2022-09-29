@@ -1,20 +1,21 @@
-// package: 
+// package: posts
 // file: post.proto
 
 /* tslint:disable */
 /* eslint-disable */
 
-import * as grpc from "@grpc/grpc-js";
+import * as grpc from "grpc";
 import * as post_pb from "./post_pb";
+import * as google_protobuf_empty_pb from "google-protobuf/google/protobuf/empty_pb";
 
-interface IPostServiceService extends grpc.ServiceDefinition<grpc.UntypedServiceImplementation> {
-    createPost: IPostServiceService_ICreatePost;
-    addComment: IPostServiceService_IAddComment;
-    listPosts: IPostServiceService_IListPosts;
+interface IPostsService extends grpc.ServiceDefinition<grpc.UntypedServiceImplementation> {
+    createPost: IPostsService_ICreatePost;
+    addComment: IPostsService_IAddComment;
+    listPosts: IPostsService_IListPosts;
 }
 
-interface IPostServiceService_ICreatePost extends grpc.MethodDefinition<post_pb.PostCreateRequest, post_pb.Post> {
-    path: "/PostService/CreatePost";
+interface IPostsService_ICreatePost extends grpc.MethodDefinition<post_pb.PostCreateRequest, post_pb.Post> {
+    path: "/posts.Posts/CreatePost";
     requestStream: false;
     responseStream: false;
     requestSerialize: grpc.serialize<post_pb.PostCreateRequest>;
@@ -22,8 +23,8 @@ interface IPostServiceService_ICreatePost extends grpc.MethodDefinition<post_pb.
     responseSerialize: grpc.serialize<post_pb.Post>;
     responseDeserialize: grpc.deserialize<post_pb.Post>;
 }
-interface IPostServiceService_IAddComment extends grpc.MethodDefinition<post_pb.PostAddCommentRequest, post_pb.Post> {
-    path: "/PostService/AddComment";
+interface IPostsService_IAddComment extends grpc.MethodDefinition<post_pb.PostAddCommentRequest, post_pb.Post> {
+    path: "/posts.Posts/AddComment";
     requestStream: false;
     responseStream: false;
     requestSerialize: grpc.serialize<post_pb.PostAddCommentRequest>;
@@ -31,37 +32,37 @@ interface IPostServiceService_IAddComment extends grpc.MethodDefinition<post_pb.
     responseSerialize: grpc.serialize<post_pb.Post>;
     responseDeserialize: grpc.deserialize<post_pb.Post>;
 }
-interface IPostServiceService_IListPosts extends grpc.MethodDefinition<post_pb.Empty, post_pb.PostList> {
-    path: "/PostService/ListPosts";
+interface IPostsService_IListPosts extends grpc.MethodDefinition<google_protobuf_empty_pb.Empty, post_pb.PostListResponse> {
+    path: "/posts.Posts/ListPosts";
     requestStream: false;
     responseStream: false;
-    requestSerialize: grpc.serialize<post_pb.Empty>;
-    requestDeserialize: grpc.deserialize<post_pb.Empty>;
-    responseSerialize: grpc.serialize<post_pb.PostList>;
-    responseDeserialize: grpc.deserialize<post_pb.PostList>;
+    requestSerialize: grpc.serialize<google_protobuf_empty_pb.Empty>;
+    requestDeserialize: grpc.deserialize<google_protobuf_empty_pb.Empty>;
+    responseSerialize: grpc.serialize<post_pb.PostListResponse>;
+    responseDeserialize: grpc.deserialize<post_pb.PostListResponse>;
 }
 
-export const PostServiceService: IPostServiceService;
+export const PostsService: IPostsService;
 
-export interface IPostServiceServer {
+export interface IPostsServer {
     createPost: grpc.handleUnaryCall<post_pb.PostCreateRequest, post_pb.Post>;
     addComment: grpc.handleUnaryCall<post_pb.PostAddCommentRequest, post_pb.Post>;
-    listPosts: grpc.handleUnaryCall<post_pb.Empty, post_pb.PostList>;
+    listPosts: grpc.handleUnaryCall<google_protobuf_empty_pb.Empty, post_pb.PostListResponse>;
 }
 
-export interface IPostServiceClient {
+export interface IPostsClient {
     createPost(request: post_pb.PostCreateRequest, callback: (error: grpc.ServiceError | null, response: post_pb.Post) => void): grpc.ClientUnaryCall;
     createPost(request: post_pb.PostCreateRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: post_pb.Post) => void): grpc.ClientUnaryCall;
     createPost(request: post_pb.PostCreateRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: post_pb.Post) => void): grpc.ClientUnaryCall;
     addComment(request: post_pb.PostAddCommentRequest, callback: (error: grpc.ServiceError | null, response: post_pb.Post) => void): grpc.ClientUnaryCall;
     addComment(request: post_pb.PostAddCommentRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: post_pb.Post) => void): grpc.ClientUnaryCall;
     addComment(request: post_pb.PostAddCommentRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: post_pb.Post) => void): grpc.ClientUnaryCall;
-    listPosts(request: post_pb.Empty, callback: (error: grpc.ServiceError | null, response: post_pb.PostList) => void): grpc.ClientUnaryCall;
-    listPosts(request: post_pb.Empty, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: post_pb.PostList) => void): grpc.ClientUnaryCall;
-    listPosts(request: post_pb.Empty, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: post_pb.PostList) => void): grpc.ClientUnaryCall;
+    listPosts(request: google_protobuf_empty_pb.Empty, callback: (error: grpc.ServiceError | null, response: post_pb.PostListResponse) => void): grpc.ClientUnaryCall;
+    listPosts(request: google_protobuf_empty_pb.Empty, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: post_pb.PostListResponse) => void): grpc.ClientUnaryCall;
+    listPosts(request: google_protobuf_empty_pb.Empty, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: post_pb.PostListResponse) => void): grpc.ClientUnaryCall;
 }
 
-export class PostServiceClient extends grpc.Client implements IPostServiceClient {
+export class PostsClient extends grpc.Client implements IPostsClient {
     constructor(address: string, credentials: grpc.ChannelCredentials, options?: object);
     public createPost(request: post_pb.PostCreateRequest, callback: (error: grpc.ServiceError | null, response: post_pb.Post) => void): grpc.ClientUnaryCall;
     public createPost(request: post_pb.PostCreateRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: post_pb.Post) => void): grpc.ClientUnaryCall;
@@ -69,7 +70,7 @@ export class PostServiceClient extends grpc.Client implements IPostServiceClient
     public addComment(request: post_pb.PostAddCommentRequest, callback: (error: grpc.ServiceError | null, response: post_pb.Post) => void): grpc.ClientUnaryCall;
     public addComment(request: post_pb.PostAddCommentRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: post_pb.Post) => void): grpc.ClientUnaryCall;
     public addComment(request: post_pb.PostAddCommentRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: post_pb.Post) => void): grpc.ClientUnaryCall;
-    public listPosts(request: post_pb.Empty, callback: (error: grpc.ServiceError | null, response: post_pb.PostList) => void): grpc.ClientUnaryCall;
-    public listPosts(request: post_pb.Empty, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: post_pb.PostList) => void): grpc.ClientUnaryCall;
-    public listPosts(request: post_pb.Empty, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: post_pb.PostList) => void): grpc.ClientUnaryCall;
+    public listPosts(request: google_protobuf_empty_pb.Empty, callback: (error: grpc.ServiceError | null, response: post_pb.PostListResponse) => void): grpc.ClientUnaryCall;
+    public listPosts(request: google_protobuf_empty_pb.Empty, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: post_pb.PostListResponse) => void): grpc.ClientUnaryCall;
+    public listPosts(request: google_protobuf_empty_pb.Empty, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: post_pb.PostListResponse) => void): grpc.ClientUnaryCall;
 }
